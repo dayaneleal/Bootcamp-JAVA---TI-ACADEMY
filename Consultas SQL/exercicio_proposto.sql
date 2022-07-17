@@ -35,3 +35,9 @@ ORDER BY SUM(quantidade) DESC;
 -- R: O produto mais vendido é o tijolo.
 
 -- CRUD (insert, select, update, delete)
+
+UPDATE material SET nome = 'Prego' WHERE id = 2;
+
+DELETE FROM material WHERE id = 2;
+DELETE FROM item_ordem_compra WHERE item_ordem_compra = 5
+AND item_ordem_compra.idMaterial = 11
