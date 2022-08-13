@@ -6,13 +6,31 @@
 	http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
 	
 	<changeSet id="1" author="dayane">
-		<preConditions onFail="MARK_RAN" onFailMessage="Já existe a tabela serie">
+	
+		<preConditions onFail="MARK_RAN" onFailMessage="Já existe a tabela genero">
+			<not>
+				<tableExists tableName="genero"/>
+			</not>
+		</preConditions>
+		<createTable tableName="genero">
+			<column name="id" type="BIGINT" autoIncrement="true">
+				<constraints nullable="false" primaryKey="true" primaryKeyName="pk_genero" />
+			</column>
+			<column name="nome" type="${descricao}">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+	
+	
+	<changeSet id="2" author="dayane">
+	<preConditions onFail="MARK_RAN" onFailMessage="Já existe a tabela serie">
 			<not>
 				<tableExists tableName="serie"/>
 			</not>
 		</preConditions>
 		<createTable tableName="serie">
-			<column name="id" type="INT" autoIncrement="true">
+			<column name="id" type="BIGINT" autoIncrement="true">
 				<constraints nullable="false" primaryKey="true" primaryKeyName="pk_serie" />
 			</column>
 			<column name="titulo" type="${descricao}">
@@ -26,5 +44,7 @@
 			<column name="numero_temporadas" type="${numerico}"/>
 		</createTable>
 	</changeSet>
+	
+	
 	
 </databaseChangeLog>
